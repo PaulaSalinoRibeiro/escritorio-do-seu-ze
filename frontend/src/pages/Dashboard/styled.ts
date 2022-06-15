@@ -2,20 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background: ${({theme}) => theme.colors.grey};
-  height: 100vh;
+  height: 100%;
   position: relative;
 
   table {  
   font-size: 16px;
   border-collapse: collapse;
+  height: 100%;
   margin: 0 auto;
   margin-top: 32px;
   color: ${({theme}) => theme.colors.white};
   
   td, th {
-    padding: 10px;
+    padding: 8px;
     margin: 0
-    width: 100%;
+    width: 80%;
   }
 
   th {
@@ -30,7 +31,7 @@ export const Container = styled.div`
       border-radius: 8px;
       color: ${({theme}) => theme.colors.dark};
       font-size: 12px;
-      margin-left: 10px;
+      margin-left: 2px;
       padding: 8px
     }
 `;

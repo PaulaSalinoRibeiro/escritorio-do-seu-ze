@@ -18,9 +18,10 @@ interface Props {
   data: DataProps;
   setIsModalOpen: (value: boolean) => void;
   setUpdateItem: (value: DataProps) => void;
+  offices: DataProps[];
 }
 
-export function ModalEdit({data, setIsModalOpen, setUpdateItem}: Props) {
+export function ModalEdit({data, setIsModalOpen, setUpdateItem, offices}: Props) {
 
   const handleChange = ({target: {name, value}}: ChangeEvent<HTMLInputElement>) => {
     setUpdateItem({ ...data, [name]: value});
@@ -38,8 +39,12 @@ export function ModalEdit({data, setIsModalOpen, setUpdateItem}: Props) {
   }
 
   const handleClick = (id: string) => {
+    offices.forEach(item => {
+      if (item.id === id) Object.assign(item, data)
+    });
     updateDB(id);
     setIsModalOpen(false);
+    
   }
 
   return (

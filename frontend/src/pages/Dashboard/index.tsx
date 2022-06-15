@@ -103,7 +103,13 @@ export function Dashboard() {
       </table>
 
       {
-        isModalOpen && <ModalEdit data={updateItem} setIsModalOpen={setIsModalOpen} setUpdateItem={setUpdateItem}/>
+        isModalOpen 
+        && <ModalEdit 
+          data={updateItem} 
+          setIsModalOpen={setIsModalOpen} 
+          setUpdateItem={setUpdateItem} 
+          offices={offices}
+        />
       }
     </Container>
   )

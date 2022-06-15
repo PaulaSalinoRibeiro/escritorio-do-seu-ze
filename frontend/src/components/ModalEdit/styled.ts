@@ -8,7 +8,7 @@ export const Forms = styled.form`
   width: 40%;
   margin: auto;
   position: absolute;
-  top: 15%;
+  top: 10%;
   left: 28%;
 
   label {
