@@ -1,10 +1,23 @@
 import { useEffect, useState } from 'react';
 
 import { Header } from '../../components/Header'
-import { Cards } from '../../components/Cards';
+
+import { Container } from './styled';
+
+interface DataProps {
+  id: string;
+  first_name: string;
+  last_name: string;
+  birthday: string;
+  city: string;
+  email: string;
+  phone: string;
+  state: string;
+  address: string;
+}
 
 export function Dashboard() {
-  const [offices, setOffices] = useState([]);
+  const [offices, setOffices] = useState<DataProps[]>([]);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -17,12 +30,63 @@ export function Dashboard() {
     fetchApi();
   }, []);
 
+  const handleEdit = (id: string) => {
+    console.log('edit')
+  }
+
+  const handleDelete = (id: string) => {
+    
+  }
+
   return (
-    <>
+    <Container>
       <Header />
-      {
-        offices?.map(item => <Cards data={item} /> )
-      }
-    </>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Aniversário</th>
+            <th>Cidade</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Estado</th>
+            <th>Endereço</th>
+            <th>Editar/Excluir</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            offices?.map((item) => (
+              <tr key={item.id}>
+                <td>{`${item.first_name} ${item.last_name}`}</td>
+                <td>{item.birthday}</td>
+                <td>{item.city}</td>
+                <td>{item.email}</td>
+                <td>{item.phone}</td>
+                <td>{item.state}</td>
+                <td>{item.address}</td>
+                <td>{
+                    <>
+                      <button 
+                      type="button" 
+                      onClick={() => handleEdit(item.id) }
+                    >
+                      Editar
+                    </button>
+                    <button 
+                      type="button" 
+                      onClick={() => handleDelete(item.id) }
+                    >
+                      Excluir
+                    </button>
+                    </>
+                    }
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </Container>
   )
 }
