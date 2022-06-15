@@ -1,9 +1,22 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function Home() {
+import { Container } from './styled';
+
+export function Home() {  
+
+  const history = useNavigate();
+
   return (
     <>
-      <h1>Bem vindo ao Escritório do Seu Zé!</h1>
+      <Container>
+          <h1>Bem vindo(a) ao Escritório do Seu Zé!</h1>
+          <button
+            type="button"
+            onClick={() => history('/dashboard')}
+          >
+            Ir para escritórios
+          </button>
+      </Container>
     </>
   )
 }
