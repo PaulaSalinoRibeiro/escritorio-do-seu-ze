@@ -15,9 +15,9 @@ const findById = async (id) => {
 };
 
 const create = async (id, first_name, last_name, birthday, city, email, phone, state, address) => await connection.execute(
-  'INSERT INTO model_example.authors (first_name, middle_name, last_name) VALUES (?,?,?,?,?,?,?,?,?)',
+  'INSERT INTO Offices_do_Seu_Ze.offices (id, first_name, last_name, birthday, city, email, phone, state, address ) VALUES (?,?,?,?,?,?,?,?,?)',
   [id, first_name, last_name, birthday, city, email, phone, state, address]
-)
+);
 
 // const update = async () => {
 
