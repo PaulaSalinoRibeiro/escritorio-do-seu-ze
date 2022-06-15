@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background: ${({theme}) => theme.colors.grey};
   height: 100vh;
+  position: relative;
 
   table {  
   font-size: 16px;

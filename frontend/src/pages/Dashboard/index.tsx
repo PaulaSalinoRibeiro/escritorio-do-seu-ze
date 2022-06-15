@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { Header } from '../../components/Header'
+import { ModalEdit } from '../../components/ModalEdit';
 
 import { Container } from './styled';
 
@@ -18,6 +19,8 @@ interface DataProps {
 
 export function Dashboard() {
   const [offices, setOffices] = useState<DataProps[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [updateItem, setUpdateItem] = useState({} as DataProps);
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -31,11 +34,22 @@ export function Dashboard() {
   }, []);
 
   const handleEdit = (id: string) => {
-    console.log('edit')
+    const update = offices.find(item => item.id === id);
+    setUpdateItem(update!);
+    setIsModalOpen(true);
+  }
+
+  const deleteDB = async (id : string) => {
+    await fetch(`http://localhost:3333/offices/${id}`, {
+      method: 'DELETE'
+    });
   }
 
   const handleDelete = (id: string) => {
-    
+    const newOffices = offices.filter(item => item.id !== id);
+    setOffices(newOffices);
+
+    deleteDB(id);
   }
 
   return (
@@ -87,6 +101,10 @@ export function Dashboard() {
           }
         </tbody>
       </table>
+
+      {
+        isModalOpen && <ModalEdit data={updateItem} setIsModalOpen={setIsModalOpen} setUpdateItem={setUpdateItem}/>
+      }
     </Container>
   )
 }
