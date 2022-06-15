@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const officeRouter = require('./routes/officesRouter');
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 
